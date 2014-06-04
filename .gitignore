@@ -1,0 +1,14 @@
+dist
+cabal-dev
+*.o
+*.bin
+*.hi
+*.chi
+*.chs.h
+.virthualenv
+TAGS
+
+*~
+.\#*
+.*\#
+*.swp

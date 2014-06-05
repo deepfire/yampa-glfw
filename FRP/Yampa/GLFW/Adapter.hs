@@ -50,10 +50,11 @@ adapt sf = do
     let reactEvent ev = do
             time <- readIORef timeRef
             time' <- GLFW.getTime
+            writeIORef timeRef time'
             let dt = (time' - time)
             b <- react rh (dt, Just (Event ev))
             if b then writeIORef closeFlag True
-                 else writeIORef timeRef time'
+                 else return ()
 
     -- set callbacks
     GLFW.setWindowCloseCallback $ do

@@ -6,7 +6,7 @@ version:             0.1.0.0
 synopsis:            An adapter for using GLFW 3 with the Yampa FRP library.
 -- description:         
 license:             GPL-3
-license-file:        LICENSE
+license-file:        COPYING
 author:              Serge Kosyrev
 maintainer:          _deepfire@feelingofgreen.ru
 -- copyright:           

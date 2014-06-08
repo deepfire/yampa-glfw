@@ -2,7 +2,7 @@
 import Control.Arrow
 import Data.Monoid
 import Data.VectorSpace
--- import Data.VectorSpace.OpenGL
+
 import "GLFW-b" Graphics.UI.GLFW
 import Graphics.Rendering.OpenGL
 import FRP.Yampa.GLFW.Adapter

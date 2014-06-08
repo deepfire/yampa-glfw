@@ -2,7 +2,7 @@
 
 -- Copyright   :  (c) Kosyrev Serge 2014
 -- License     :  GNU GPLv3 (see COPYING)
--- Based on yampa-glut by Nikolay Orlyuk
+-- Heavily based on yampa-glut by Nikolay Orlyuk
 
 module FRP.Yampa.GLFW.Adapter
     ( adaptSimple, adapt, simpleInit
@@ -77,17 +77,9 @@ simpleInit title = do
     success <- GLFW.initialize
     if success
        then do
-         -- GLFW.openWindow GLFW.defaultDisplayOptions
-         --         { GLFW.displayOptions_width              = 1024
-         --         , GLFW.displayOptions_height             = 768
-         --         , GLFW.displayOptions_openGLVersion      = (3,2)
-         --         , GLFW.displayOptions_openGLProfile      = GLFW.CoreProfile
-         --         }
-         GLFW.openWindow GLFW.defaultDisplayOptions
+         _ <- GLFW.openWindow GLFW.defaultDisplayOptions
                  { GLFW.displayOptions_width              = 1024
                  , GLFW.displayOptions_height             = 768
-                 -- , GLFW.displayOptions_openGLVersion      = (3,2)
-                 -- , GLFW.displayOptions_openGLProfile      = GLFW.CoreProfile
                  }
 
          GLFW.setWindowTitle title
@@ -131,3 +123,4 @@ instance Monoid a => Monoid (Event a) where
 instance Monoid b => Monoid (SF a b) where
     mempty = arr mempty
     sfX `mappend` sfY = (sfX &&& sfY) >>^ uncurry mappend
+

@@ -2,7 +2,7 @@
 
 -- Copyright   :  (c) Kosyrev Serge 2014
 -- License     :  GNU GPLv3 (see COPYING)
--- Based on yampa-glut by Nikolay Orlyuk
+-- Heavily based on yampa-glut by Nikolay Orlyuk
 
 module FRP.Yampa.GLFW.InternalUI where
 

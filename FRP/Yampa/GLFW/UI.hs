@@ -1,7 +1,6 @@
-
 -- Copyright   :  (c) Kosyrev Serge 2014
 -- License     :  GNU GPLv3 (see COPYING)
--- Based on yampa-glut by Nikolay Orlyuk
+-- Heavily based on yampa-glut by Nikolay Orlyuk
 
 module FRP.Yampa.GLFW.UI
     ( UI
@@ -46,11 +45,6 @@ mousePosition = hold (Position 0 0) <<< arr (mapFilterE f) where
 simpleMousePosition :: Fractional a => SF (Event UI) (GL.Vector2 a)
 simpleMousePosition = windowResize &&& mousePosition >>> arr f where
     f (Size w h, Position x y) = GL.Vector2 x' y' where
-        {-
-        b = fromIntegral (w `min` h)
-        x' = (2 * fromIntegral x - fromIntegral w) / b
-        y' = (fromIntegral h - 2 * fromIntegral y) / b
-        -}
         b = realToFrac (w `min` h)
         x' = (2 * realToFrac x - realToFrac w) / b
         y' = (realToFrac h - 2 * realToFrac y) / b
@@ -74,12 +68,6 @@ mouseButtonAction = arr (mapFilterE f) where
     f (GlfwMouseButton mb ks) = Just (ks, mb)
     f _ = Nothing
 
--- | State of modifiers associated with keyboard/mouse event
--- modifiers :: SF (Event UI) (Event Modifiers)
--- modifiers = arr (mapFilterE f) where
---     f (GlutKeyboardMouse _ _ m _) = Just m
---     f _ = Nothing
-
 -- | Key press events
 keyPress :: SF (Event UI) (Event (Either Char Key))
 keyPress = keyAction >>^ fmap snd . filterE ((==True) . fst)
@@ -95,9 +83,3 @@ mouseButtonPressed :: MouseButton -> SF (Event UI) Bool
 mouseButtonPressed button = hold False <<< mapFilterE f ^<< mouseButtonAction where
     f (x, button') | button == button' = Just (x == True)
     f _ = Nothing
-
--- | Crossing/leaving event
--- crossing :: SF (Event UI) (Event Crossing)
--- crossing = arr (mapFilterE f) where
---     f (GlutCrossing c) = Just c
---     f _ = Nothing

@@ -5,10 +5,12 @@ cabal-dev
 *.hi
 *.chi
 *.chs.h
-.virthualenv
+
+*-docs
+*-docs.tar.gz
 TAGS
 
 *~
 .\#*
-.*\#
+*\#
 *.swp
